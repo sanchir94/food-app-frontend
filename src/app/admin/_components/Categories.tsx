@@ -8,6 +8,21 @@ type CategoryType = {
 export default function Category() {
   const [categories, setCategories] = useState<CategoryType[]>([]);
 
+  const addCategory = async () => {
+    const categoryName = prompt("Enter Category Name");
+    const response = await fetch("http://localhost:8000/food-category/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        categoryName,
+      }),
+    });
+    const data = await response.json();
+    setCategories([...categories, data.newItem]);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("http://localhost:8000/food-category/");
@@ -22,6 +37,10 @@ export default function Category() {
       {categories.map((category) => (
         <div key={category._id}>{category.categoryName}</div>
       ))}
+
+      <button className="bg-red-800 p-4" onClick={addCategory}>
+        new
+      </button>
     </div>
   );
 }
