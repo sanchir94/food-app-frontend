@@ -49,12 +49,6 @@ export default function CategoriesUsers() {
             {category.categoryName}
           </div>
         ))}
-        {/* <button
-          className="flex items-center justify-center w-9 h-9 bg-red-500 text-white rounded-full text-lg font-bold"
-          onClick={addCategory}
-        >
-          +
-        </button> */}
       </div>
     </div>
   );

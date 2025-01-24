@@ -5,6 +5,7 @@ import { User } from "lucide-react";
 
 import "./styles.css";
 import CategoriesUsers from "./categoriesUser";
+
 export default function App() {
   return (
     <div>

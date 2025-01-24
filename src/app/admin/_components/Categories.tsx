@@ -1,64 +1,116 @@
 "use client";
-import { useState, useEffect } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Plus, X } from "lucide-react";
+import { useEffect, useState } from "react";
+
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import Link from "next/link";
+
 type CategoryType = {
   categoryName: string;
   _id: string;
 };
 
-export default function Home() {
-  const [categories, setCategories] = useState<CategoryType[]>([]);
+export const Categories = () => {
+  const [foodCategory, setFoodCategory] = useState<CategoryType[]>();
+  const [newCategory, setNewCategory] = useState<string>();
 
-  const addCategory = async () => {
-    const categoryName = prompt("Enter new category name");
-    const response = await fetch("http://localhost:8000/food-category", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ categoryName }),
-    });
-    const data = await response.json();
-    setCategories([...categories, data.newItem]);
-  };
-  async function fetchAll() {
-    const res = await fetch(`http://localhost:8000/food-category`, {
-      method: "GET",
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const response = await fetch("http://localhost:8000/food-category");
+      const data = await response.json();
+      setFoodCategory(data);
+    };
+
+    fetchCategory();
+  }, []);
+
+  const addCategory = () => {
+    fetch("http://localhost:8000/food-category/", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      method: "POST",
+      body: JSON.stringify({ categoryName: newCategory }),
     });
-
-    const data = await res.json();
-    setCategories(data);
-  }
-
-  useEffect(() => {
-    fetchAll();
-  }, []);
+    setNewCategory("");
+  };
 
   return (
-    <div className="bg-white w-full h-auto py-6 px-8 rounded-xl shadow-md">
-      <h4 className="text-[18px] font-semibold mb-4">Dishes category</h4>
-      <div className="flex flex-wrap items-center gap-4">
-        {categories?.map((category) => (
-          <div
-            key={category._id}
-            className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-full text-gray-700 text-sm font-medium"
+    <div className=" w-full p-6 rounded-xl  flex flex-col gap-4 bg-background ">
+      <h4 className=" text-xl font-semibold  ">Dishes Category</h4>
+      <div className="flex flex-wrap gap-3 ">
+        <Link href={`/admin/menu`}>
+          <Badge
+            variant="outline"
+            className=" rounded-full border py-2 px-4 flex gap-2 text-sm font-medium "
           >
-            {category.categoryName}
-            <span className="ml-2 bg-black text-white rounded-full px-2 py-1 text-xs">
-              {category._id}
-            </span>
-          </div>
-        ))}
-        <button
-          className="flex items-center justify-center w-9 h-9 bg-red-500 text-white rounded-full text-lg font-bold"
-          onClick={addCategory}
-        >
-          +
-        </button>
+            All dishes
+          </Badge>
+        </Link>
+        {foodCategory?.map((category) => {
+          return (
+            <Link href={`/admin/menu/${category._id}`} key={category._id}>
+              <Badge
+                variant="outline"
+                className=" rounded-full border py-2 px-4 flex gap-2 text-sm font-medium "
+              >
+                {category.categoryName}
+              </Badge>
+            </Link>
+          );
+        })}
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="destructive" className="rounded-full  p-[10px]">
+              <Plus />
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="flex flex-col gap-6 w-[460px] p-6">
+            <DialogHeader className="pb-4">
+              <DialogTitle>Add new category</DialogTitle>
+            </DialogHeader>
+            <div className="grid w-full max-w-sm items-center gap-1.5">
+              <Label htmlFor="categoryName">Category name</Label>
+              <Input
+                id="categoryName"
+                type="text"
+                className="w-[412px]"
+                placeholder="Type category name..."
+                onChange={(e) => setNewCategory(e.target.value)}
+                required
+                pattern="[A-Za-z]"
+              />
+            </div>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button
+                  type="submit"
+                  onClick={() => {
+                    if (newCategory) {
+                      addCategory();
+                    }
+                  }}
+                >
+                  Add category
+                </Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
-}
+};

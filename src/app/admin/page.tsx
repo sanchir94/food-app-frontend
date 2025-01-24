@@ -1,6 +1,6 @@
 "use client";
 
-import Categories from "./_components/Categories";
+import { Categories } from "./_components/Categories";
 
 export default function Home() {
   return (
