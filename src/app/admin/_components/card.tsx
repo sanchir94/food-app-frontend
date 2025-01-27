@@ -14,7 +14,7 @@ import {
 import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
 
-export const CardComp = ({ food, id, onChange, handleUpload }: any) => {
+export const CardComp = ({ food, id, onChange }: any) => {
   const [editFood, setEditFood] = useState({
     name: "",
     price: 0,
@@ -23,8 +23,6 @@ export const CardComp = ({ food, id, onChange, handleUpload }: any) => {
     category: id,
   });
 
-  console.log(editFood);
-  console.log(food.name);
   return (
     <Card className="border bg-background p-4 w-[270.75px] h-[241px] flex flex-col gap-5 items-center  justify-center">
       <div
@@ -51,7 +49,6 @@ export const CardComp = ({ food, id, onChange, handleUpload }: any) => {
                 id="foodName"
                 name="name"
                 type="text"
-                onChange={onChange}
                 placeholder="Type food name..."
               />
             </div>
@@ -124,7 +121,7 @@ export const CardComp = ({ food, id, onChange, handleUpload }: any) => {
       </div>
       <div className="grid gap-2">
         <div className="flex justify-between">
-          <span className="text-red-500 ">{food.name}</span>
+          <span className="text-red-500 ">{food.foodName}</span>
           <span>${food.price}</span>
         </div>
         <h4 className="text-xs">{food.ingredients}</h4>

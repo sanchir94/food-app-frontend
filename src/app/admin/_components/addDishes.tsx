@@ -21,6 +21,7 @@ interface AddDishProps {
   onChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
+  // setFoods: Dispatch<SetStateAction<FoodType[]>> | undefined;
 }
 
 export const AddDish = ({
@@ -31,7 +32,7 @@ export const AddDish = ({
   onChange,
 }: AddDishProps) => {
   const addDish = async () => {
-    await fetch("http://localhost:8000/food/", {
+    const data = await fetch("http://localhost:8000/food/", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -39,8 +40,12 @@ export const AddDish = ({
       method: "POST",
       body: JSON.stringify(food),
     });
+    const dataJson: any = await data.json();
+    console.log(dataJson);
+    setFood((prev: any) => [prev, dataJson.newItem]);
+    setFood && setFood((prev: any) => [...prev, dataJson.newItem]);
   };
-
+  console.log(food);
   return (
     <Dialog>
       <DialogTitle className=" text-center ">
@@ -64,7 +69,6 @@ export const AddDish = ({
           <div className="grid w-full max-w-sm items-center gap-1.5">
             <Label htmlFor="foodName">Food name</Label>
             <Input
-              value={food.name}
               id="foodName"
               name="name"
               type="text"
@@ -100,10 +104,10 @@ export const AddDish = ({
 
         <div className="grid w-full items-center gap-1.5">
           <h1 className="text-sm">Food image</h1>
-          {food.image !== "" ? (
+          {food?.image !== "" ? (
             <div
               className={`bg-cover bg-center rounded-md h-[138px] `}
-              style={{ backgroundImage: `url(${food.image})` }}
+              style={{ backgroundImage: `url(${food?.image})` }}
             ></div>
           ) : (
             <Label
