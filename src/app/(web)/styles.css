@@ -1,7 +1,7 @@
 /* styles.css */
 .text-animation-infinite-scroll {
   white-space: nowrap;
-  animation: infinite-scroll 0.1s linear infinite;
+  animation: infinite-scroll 10s linear infinite;
 }
 
 @keyframes infinite-scroll {

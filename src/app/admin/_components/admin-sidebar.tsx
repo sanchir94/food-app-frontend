@@ -4,6 +4,7 @@ import { Car } from "lucide-react";
 import { Settings } from "lucide-react";
 
 import Link from "next/link";
+
 export default function SideBar() {
   return (
     <div className="w-[205px] min-h-[1024px] bg-white">
@@ -20,7 +21,7 @@ export default function SideBar() {
       </div>
       <div className="flex justify-center items-center">
         <div className="flex flex-col w-[200px] h-auto p-4 items-start ml-5">
-          <Link href="/admin">
+          <Link href="/admin/menu">
             <button className="flex items-center gap-2 mt-4">
               <Dock /> Food menu
             </button>

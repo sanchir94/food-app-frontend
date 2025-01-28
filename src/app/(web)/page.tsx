@@ -2,9 +2,9 @@ import { ShoppingCart } from "lucide-react";
 import { Instagram } from "lucide-react";
 import { Facebook } from "lucide-react";
 import { User } from "lucide-react";
-
+import { Dishess } from "./Dishess";
 import "./styles.css";
-import CategoriesUsers from "./categoriesUser";
+import { CategoriesUsers } from "./categoriesUser";
 
 export default function App() {
   return (
@@ -19,48 +19,12 @@ export default function App() {
       <img className="w-full h-[780px]" src="hoolzurag.png" />
       <div className="bg-[#404040]">
         <CategoriesUsers />
+        <Dishess />
       </div>
 
-      <div className="bg-[#404040]">
-        <h1 className="text-[30px] font-[600] text-white ml-16 ">Appetizers</h1>
-        <div className="bg-white w-[400px] mt-10 h-[350px] rounded-3xl shadow-lg">
-          <img
-            src="food.1.png"
-            alt="Finger food"
-            className="w-full h-[210px] object-cover object-center rounded-t-3xl"
-          />
-          <div className="p-4">
-            <div className="flex justify-between items-center mt-2">
-              <p className="text-red-500 font-semibold text-2xl">Finger food</p>
-              <p className="text-lg font-semibold">$12.99</p>
-            </div>
-            <p className="text-sm text-gray-600 mt-2">
-              Fluffy pancakes stacked with fruits, cream, syrup, and powdered
-              sugar.
-            </p>
-          </div>
-        </div>
-        <div className="bg-white w-[400px] h-[350px] rounded-3xl shadow-lg">
-          <img
-            src="food.4.png"
-            alt="Finger food"
-            className="w-full h-[210px] object-cover object-center rounded-t-3xl"
-          />
-          <div className="p-4">
-            <div className="flex justify-between items-center mt-2">
-              <p className="text-red-500 font-semibold text-2xl">Finger food</p>
-              <p className="text-lg font-semibold">$12.99</p>
-            </div>
-            <p className="text-sm text-gray-600 mt-2">
-              Fluffy pancakes stacked with fruits, cream, syrup, and powdered
-              sugar.
-            </p>
-          </div>
-        </div>
-      </div>
       <footer className="bg-[#18181B] w-full h-[auto]">
         <div className="  w-full h-[92px] bg-[#EF4444] text-white text-[30px] font-[600] flex items-center justify-center overflow-hidden ">
-          <div className="text-animation-infinite-scroll flex gap-6">
+          <div className="text-animation-infinite-scroll w-screen flex gap-[300px]">
             <p>Fresh fast delivery</p>
             <p>Fresh fast delivery</p>
             <p>Fresh fast delivery</p>

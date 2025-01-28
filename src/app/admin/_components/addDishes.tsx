@@ -21,7 +21,6 @@ interface AddDishProps {
   onChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  // setFoods: Dispatch<SetStateAction<FoodType[]>> | undefined;
 }
 
 export const AddDish = ({
