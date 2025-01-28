@@ -40,12 +40,10 @@ export const AddDish = ({
       method: "POST",
       body: JSON.stringify(food),
     });
-    const dataJson: any = await data.json();
-    console.log(dataJson);
-    setFood((prev: any) => [prev, dataJson.newItem]);
-    setFood && setFood((prev: any) => [...prev, dataJson.newItem]);
+    const newItem: any = await data.json();
+    window.location.reload();
   };
-  console.log(food);
+
   return (
     <Dialog>
       <DialogTitle className=" text-center ">
