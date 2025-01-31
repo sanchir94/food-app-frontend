@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { CategoryType } from "./Dishes";
 
 import { Card } from "@/components/ui/card";
-import { CardComp } from "./card";
+
 import { AddDish } from "./addDishes";
+import { CardComp } from "./editDish";
 
 export type FoodType = {
   _id: string;

@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import { Plus, Image } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Dishes } from "./Dishes";
 
 interface AddDishProps {
   categoryName: string;

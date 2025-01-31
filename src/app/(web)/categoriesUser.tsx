@@ -1,7 +1,5 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Plus, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import {
@@ -13,14 +11,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-
-type CategoryType = {
-  categoryName: string;
-  _id: string;
-};
+import { CategoryType } from "./dishes";
 
 export const CategoriesUsers = () => {
   const [foodCategory, setFoodCategory] = useState<CategoryType[]>();
@@ -49,7 +42,7 @@ export const CategoriesUsers = () => {
   };
 
   return (
-    <div className=" w-full p-6 rounded-xl  flex flex-col gap-4 bg-background ">
+    <div className=" w-full p-6 rounded-xl  flex flex-col gap-4 text-white ">
       <h4 className=" text-xl font-semibold  ">Category</h4>
       <div className="flex flex-wrap gap-3 ">
         {foodCategory?.map((category) => {
@@ -57,7 +50,7 @@ export const CategoriesUsers = () => {
             <Link href={`${category._id}`} key={category._id}>
               <Badge
                 variant="outline"
-                className=" rounded-full border py-2 px-4 flex gap-2 text-sm font-medium "
+                className=" rounded-full border py-2 px-4 flex gap-2 text-sm font-medium bg-white"
               >
                 {category.categoryName}
               </Badge>
@@ -72,15 +65,6 @@ export const CategoriesUsers = () => {
             </DialogHeader>
             <div className="grid w-full max-w-sm items-center gap-1.5">
               <Label htmlFor="categoryName">Category name</Label>
-              <Input
-                id="categoryName"
-                type="text"
-                className="w-[412px]"
-                placeholder="Type category name..."
-                onChange={(e) => setNewCategory(e.target.value)}
-                required
-                pattern="[A-Za-z]"
-              />
             </div>
             <DialogFooter>
               <DialogClose asChild></DialogClose>

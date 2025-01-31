@@ -2,18 +2,8 @@
 import { useEffect, useState } from "react";
 import { CategoryType } from "../admin/_components/Dishes";
 
-import { Card } from "@/components/ui/card";
-import { CardComp } from "../admin/_components/card";
-import { AddDish } from "../admin/_components/addDishes";
-
-export type FoodType = {
-  _id: string;
-  foodName: string;
-  price: number;
-  image: string;
-  ingredients: string;
-  category: string;
-};
+import { FoodType } from "../admin/_components/foodFiltered";
+import { CardComp } from "../admin/_components/editDish";
 
 export const Filter = ({ _id, categoryName }: CategoryType) => {
   const [foods, setFoods] = useState<FoodType[]>();

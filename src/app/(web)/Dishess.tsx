@@ -1,13 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-
 import { useParams } from "next/navigation";
 import { Filter } from "./foodFilter";
-
-export type CategoryType = {
-  categoryName: string;
-  _id: string;
-};
+import { CategoryType } from "./dishes";
 
 export const Dishess = () => {
   const [foodCategory, setFoodCategory] = useState<CategoryType[]>();

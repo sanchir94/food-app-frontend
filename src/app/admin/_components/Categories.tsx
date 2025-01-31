@@ -28,7 +28,7 @@ export const Categories = () => {
 
   useEffect(() => {
     const fetchCategory = async () => {
-      const response = await fetch("http://localhost:8000/food-category");
+      const response = await fetch("http://localhost:8000/food-category/");
       const data = await response.json();
       setFoodCategory(data);
     };
@@ -45,6 +45,7 @@ export const Categories = () => {
       method: "POST",
       body: JSON.stringify({ categoryName: newCategory }),
     });
+    window.location.reload();
     setNewCategory("");
   };
 
